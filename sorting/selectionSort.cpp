@@ -4,7 +4,7 @@
 int getMaxIndex(int arr[], int startIndex, int lastIndex)
 {
     int max = startIndex;
-    for (int i = startIndex; i < lastIndex; i++)
+    for (int i = startIndex + 1; i <= lastIndex; i++)
     {
         if (arr[max] < arr[i])
             max = i;
@@ -30,7 +30,7 @@ void selectionSort(int arr[], int arrSize)
 
 int main()
 {
-    int arr[] = {100, 50, 1200, 40, 20, 60};
+    int arr[] = {0, 50, 90, 90, 1200, -40, 20, 60, -1500};
     int arrSize = sizeof(arr) / sizeof(arr[0]);
     selectionSort(arr, arrSize);
     for (int i = 0; i < arrSize; i++)
