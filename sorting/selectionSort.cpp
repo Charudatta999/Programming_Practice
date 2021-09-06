@@ -1,42 +1,52 @@
-#include <stdio.h>
 #include <iostream>
 
-int getMaxIndex(int arr[], int startIndex, int lastIndex)
+using namespace std;
+
+void swap(int *array, int startPosition, int minPosition)
 {
-    int max = startIndex;
-    for (int i = startIndex + 1; i <= lastIndex; i++)
-    {
-        if (arr[max] < arr[i])
-            max = i;
-    }
-    return max;
-}
-void swapIndex(int arr[], int first, int second)
-{
-    int temp = arr[first];
-    arr[first] = arr[second];
-    arr[second] = temp;
+    int temp = array[startPosition];
+    array[startPosition] = array[minPosition];
+    array[minPosition] = temp;
 }
 
-void selectionSort(int arr[], int arrSize)
+void SelectionSort(int *array, int size)
 {
-    for (int i = 0; i < arrSize; i++)
+    for (int startPosition = 0; startPosition < size; startPosition++)
     {
-        int lastIndex = arrSize - i - 1;
-        int maxIndex = getMaxIndex(arr, 0, lastIndex);
-        swapIndex(arr, maxIndex, lastIndex);
+        int minPosition = startPosition;
+        for (int i = minPosition + 1; i < size; i++)
+        {
+            if (array[i] < array[minPosition])
+                minPosition = i;
+        }
+
+        swap(array, startPosition, minPosition);
     }
 }
 
+void display(int array[], int size)
+{
+    for (int i = 0; i < size; i++)
+        cout << array[i] << " ";
+    cout << endl;
+}
 int main()
 {
-    int arr[] = {0, 50, 90, 90, 1200, -40, 20, 60, -1500};
-    int arrSize = sizeof(arr) / sizeof(arr[0]);
-    selectionSort(arr, arrSize);
-    for (int i = 0; i < arrSize; i++)
-    {
-        std::cout << arr[i] << std::endl;
-    }
+    int n;
+    std::cout<<"Enter size of array: ";
+    std::cin>>n;
+    int array[n];
+    for(int i=0;i<n;i++)
+        cin>>array[i];
+
+    // int array[] = {0, 50, 90, 90, 1200, -40, 20, 60, -1500};
+    // int n = sizeof(array) / sizeof(array[0]);
+
+    cout << "Array before sorting: ";
+    display(array, n);
+    SelectionSort(array, n);
+    cout << "Array after sorting: ";
+    display(array, n);
 
     return 0;
 }
