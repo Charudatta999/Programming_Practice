@@ -36,6 +36,25 @@
 
         return max_price - min_price;
     }
+    //sol2
+    int mProfit(vector<int> &prices)
+    {
+        int maxProfit = 0;
+        int minPrice = INT_MAX;
+        int tmp;
+        for (int &i : prices)
+        {
+            if (i < minPrice)
+            {
+                minPrice = i;
+            }
+            else if ((tmp = (i - minPrice)) > maxProfit)
+            {
+                maxProfit = tmp;
+            }
+        }
+        return maxProfit;
+    }
 
 int main()
 {
