@@ -34,3 +34,36 @@ Query                 Value
 tag1~value            "value"
 tag1.tag2.tag3~name   "Not Found!"
 tag1.tag2.tag3~final  "final"
+
+Constraints
+1<= N <=20
+1<= Q<= 20
+
+Each line in the source program contains, at most, 200 characters.
+Every reference to the attributes in the  Q queries contains at most 200 characters.
+All tag names are unique and the HRML source program is logically correct, i.e. valid nesting.
+A tag can may have no attributes.
+
+Output Format
+
+Print the value of the attribute for each query. Print "Not Found!" without quotes if the attribute does not exist.
+
+Sample Input
+
+4 3
+<tag1 value = "HelloWorld">
+<tag2 name = "Name1">
+</tag2>
+</tag1>
+tag1.tag2~name
+tag1~name
+tag1~value
+
+
+Sample Output
+
+Name1
+Not Found!
+HelloWorld
+
+
