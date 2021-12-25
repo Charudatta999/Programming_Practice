@@ -66,7 +66,7 @@ int main()
                     {
                         attr_val.pop_back();
                         attr_val = attr_val.substr(1);
-                        insert_attr(attr_name, attr_val);
+                        insert_attr(attr_name, attr_val); 
                     }
                 }
             }
