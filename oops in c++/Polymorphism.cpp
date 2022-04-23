@@ -16,7 +16,7 @@ class LevelOne: public Base{
     }
 };
 
-class LevelTwo{
+class LevelTwo: public Base{
  public:
     void baseFun(int i, int j){
         cout << i / j << endl;
@@ -25,9 +25,11 @@ class LevelTwo{
 
 int main(){
     Base b;
+    LevelOne l1;
+    LevelTwo l2;
     b.baseFun(10, 15);
-    b.baseFun(10, 15);
-    b.baseFun(15, 15);
+    l1.baseFun(10, 15);
+    l2.baseFun(15, 15);
 
     return 0;
 }
