@@ -6,133 +6,115 @@ class Node
 public:
     int data;
     Node *next;
+    Node(){
+        next = NULL;
+    }
 };
 
 class LinkedList
 {
-    Node *head;
+    Node *head = new Node();
 
 public:
     void insert_at_begining(int data);
     void insert_at_end(int data);
     void insert_at_pos(int pos, int data);
-    void delete_at_begining();
-    void delete_at_end();
-    void delete_at_pos(int pos);
+    void delete_at_begining(Node *head);
+    void delete_at_end(Node *head);
+    void delete_at_pos(int pos , int data);
     void print();
-    void last_node();
-    void deleteNode();
-    void traverseToIndex(int pos);
+    void last_node(Node *head);
+    void deleteNode(Node *head);
+    void traverseToIndex(int pos, Node *head);
 };
 
-void LinkedList::traverseToIndex(int pos)
-{
-    while (pos - 1 > 1)
+
+void LinkedList::print(){
+    Node *temp  = new Node()  ;
+    temp = head;
+    while (temp->next!=NULL)
     {
-        head = head->next;
-        pos--;
+        cout << temp->data <<" ";
+        temp = temp->next;
     }
-    return;
+
+    cout << endl;
+    // delete(temp);
 }
-void LinkedList::last_node()
-{
-    while (head->next != NULL)
-    {
-        head = head->next;
-    }
-    return;
-}
-void LinkedList ::insert_at_begining(int data)
-{
+
+//Inserting a Node
+void LinkedList::insert_at_begining(int data){
     Node *temp = new Node();
     temp->data = data;
     temp->next = head;
+
+    if (head==NULL)
+    {
+        head = temp;
+        return;
+    }
     head = temp;
-    return;
+    // free(temp);
 }
+
+
+
 
 void LinkedList::insert_at_end(int data)
 {
     Node *temp = new Node();
-    temp->data = data;
-    temp->next = NULL;
-
-    if (head->next == NULL)
-    {
-        head->next = temp;
-        return;
-    }
-    last_node();
-    head->next = temp;
-    return;
-}
-
-void LinkedList::insert_at_pos(int pos, int data)
-{
-    Node *temp = new Node();
-    temp->data = data;
-
-    if (pos == 0)
-    {
-        insert_at_begining(data);
-        return;
-    }
-
-    traverseToIndex(pos);
-    temp->next = head->next;
-    head->next = temp;
-}
-
-void LinkedList::deleteNode()
-{
-    delete (head);
-}
-
-void LinkedList::delete_at_end()
-{
-    Node *temp;
-    if (head = NULL)
-    {
-        cout << "List is Empty";
-        return;
-    }
-    if (head->next == NULL)
-    {
-        deleteNode();
-        return;
-    }
     temp = head;
-    while (temp->next->next != NULL)
+    if (head == NULL)
+    {
+                head->data = data;
+                head->next = NULL;
+                return;
+     }
+    while (temp->next!=NULL)
     {
         temp = temp->next;
     }
-    cout << "Element to Be Deleted: " << temp->next->data << endl;
-    delete (temp->next);
+    temp->data = data;
     temp->next = NULL;
+    
+    }
+
+
+void LinkedList::insert_at_pos(int pos,int data){
+         if(head==NULL) {
+             cout << "list is empty" << endl;
+         }
+         Node *temp = new Node();
+         temp = head;
+         while(pos-1>1){
+             temp = temp->next;
+             pos--;
+         }
+         Node *tempdata = new Node();
+         tempdata->data = data;
+         tempdata->next = temp->next;
+         temp->next = tempdata;
 }
-void LinkedList::delete_at_pos(int pos)
-{
-    if (head == NULL)
-    {
-        cout << "List is Empty";
-        return;
-    }
-    Node *temp, *ptr;
-    temp = head;
-    if (pos == 0)
-    {
-        cout << "Element Deleted: " << head->data << endl;
-        ptr = head;
-        head = head->next;
-        delete (ptr);
-        return;
-    }
-    while (pos-2>1)
-    {
-        head = head->next;
-        pos--;
-    }
-    temp= head->next;
-    head->next = temp->next;
-    delete (temp);
+
+int main(){
+
+    LinkedList list ;
+    // list.print();
+    // list.delete_at_begining(5,head);
+    // list.insert_at_end(7);
+    list.insert_at_begining(5);
+    list.insert_at_begining(7);
+    list.insert_at_begining(6);
+    list.print();
+
+    list.insert_at_end(4);
+    list.insert_at_end(9);
+    list.insert_at_end(9);
+    list.insert_at_end(9);
+    list.insert_at_pos(2, 11);
+    // list.insert_at_begining(6);
+
+    list.print();
+
+    return 0;
 }

@@ -1,15 +1,31 @@
-// main.cpp
-#include <sqlite3.h>
 #include <iostream>
+#include <sqlite3.h>
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Sqlite version: " << sqlite3_libversion() << std::endl;
+    // Pointer to SQLite connection
+    sqlite3 *db;
 
-    sqlite3 *mydb;
-    std::cout << sqlite3_open("test.db", &mydb) << std::endl;
-    std::cout << "Database file:" << mydb << std::endl;
-    std::cout << sqlite3_close(mydb);
+    // Save the connection result
+    int exit = 0;
+    exit = sqlite3_open("example.db", &db);
 
-    return 0;
+    // Test if there was an error
+    if (exit)
+    {
+
+        cout << "DB Open Error: " << sqlite3_errmsg(db) << endl;
+    }
+    else
+    {
+
+        cout << "Opened Database Successfully!" << endl;
+    }
+
+    // Close the connection
+    sqlite3_close(db);
+
+    return (0);
 }
