@@ -6,9 +6,9 @@ class Node
 public:
     int data;
     Node *next;
-    Node(){
-        next = NULL;
-    }
+    // Node(){
+    //     next = NULL;
+    // }
 };
 
 class LinkedList
@@ -32,7 +32,7 @@ public:
 void LinkedList::print(){
     Node *temp  = new Node()  ;
     temp = head;
-    while (temp->next!=NULL)
+    while (temp!=NULL)
     {
         cout << temp->data <<" ";
         temp = temp->next;
@@ -74,8 +74,12 @@ void LinkedList::insert_at_end(int data)
     {
         temp = temp->next;
     }
-    temp->data = data;
-    temp->next = NULL;
+        Node *temp1 = new Node();
+
+    
+    temp1->data = data;
+    temp1->next = NULL;
+    temp->next= temp1;
     
     }
 
@@ -96,12 +100,13 @@ void LinkedList::insert_at_pos(int pos,int data){
          temp->next = tempdata;
 }
 
+
+
 int main(){
 
     LinkedList list ;
-    // list.print();
-    // list.delete_at_begining(5,head);
-    // list.insert_at_end(7);
+    list.print();
+
     list.insert_at_begining(5);
     list.insert_at_begining(7);
     list.insert_at_begining(6);
@@ -112,7 +117,7 @@ int main(){
     list.insert_at_end(9);
     list.insert_at_end(9);
     list.insert_at_pos(2, 11);
-    // list.insert_at_begining(6);
+    list.insert_at_begining(6);
 
     list.print();
 
