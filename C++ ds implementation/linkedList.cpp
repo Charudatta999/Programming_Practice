@@ -14,22 +14,45 @@ public:
 class LinkedList
 {
     Node *head = new Node();
+    
 
 public:
     void insert_at_begining(int data);
     void insert_at_end(int data);
     void insert_at_pos(int pos, int data);
-    void delete_at_begining(Node *head);
-    void delete_at_end(Node *head);
-    void delete_at_pos(int pos , int data);
+    void delete_at_begining();
+    void delete_at_end();
+    void delete_at_pos();
     void print();
-    void last_node(Node *head);
-    void deleteNode(Node *head);
-    void traverseToIndex(int pos, Node *head);
+    bool check_empty();
+    
+    LinkedList(){
+        if(head==NULL){
+        cout<< "list is empty"<<endl;
+        return;
+        }
+        Node *temp = new Node();
+          temp = head;
+        head=temp->next;
+        delete(temp);
+
+    }
+
+
 };
 
 
+//checking NULL List
+bool LinkedList::check_empty(){
+    if(head==NULL){
+        cout<< "list is empty"<<endl;
+        return 1;
+    }
+    return 0;
+}
+
 void LinkedList::print(){
+    if(check_empty()) return;
     Node *temp  = new Node()  ;
     temp = head;
     while (temp!=NULL)
@@ -101,6 +124,35 @@ void LinkedList::insert_at_pos(int pos,int data){
 }
 
 
+void LinkedList::delete_at_begining(){
+    if(head==NULL){
+        cout<< "list is empty"<<endl;
+        return;
+    }
+    Node *temp = new Node();
+          temp = head;
+        head=temp->next;
+        delete(temp);
+
+}
+
+void LinkedList::delete_at_end(){
+    if(check_empty()){
+        cout<<"List is empty"<<endl;
+        return;
+    }
+    Node *temp = new Node();
+    temp = head;
+    while (temp->next!=NULL)
+    {
+        temp=temp->next;
+
+    }
+    delete(temp);
+    
+
+}
+
 
 int main(){
 
@@ -119,6 +171,12 @@ int main(){
     list.insert_at_pos(2, 11);
     list.insert_at_begining(6);
 
+    list.print();
+    
+    list.delete_at_begining();
+    list.print();
+    
+    list.delete_at_end();
     list.print();
 
     return 0;
