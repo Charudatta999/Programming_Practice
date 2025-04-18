@@ -1,1 +1,0 @@
-https://www.hackerrank.com/challenges/making-candies/problem?isFullScreen=true&h_l=interview&playlist_slugs%5B%5D=nutanix
