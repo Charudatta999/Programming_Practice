@@ -48,6 +48,8 @@
         "ctime": "cpp",
         "regex": "cpp",
         "sstream": "cpp",
-        "climits": "cpp"
+        "climits": "cpp",
+        "unordered_set": "cpp",
+        "set": "cpp"
     }
 }
